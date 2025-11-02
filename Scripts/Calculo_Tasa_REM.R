@@ -13,7 +13,7 @@ library(tidyr)
   casos_mun_año_grave <- read_csv("C:/Users/Hp/DENGUE/ETL/DATA/Resumen/casos_grave_munXaño.csv")
   Poblacion_departamental<- read_csv("C:/Users/Hp/DENGUE/JBOOK/Datos adjuntos/Poblacion_departamental.csv")
   colnames(Poblacion_departamental)[colnames(Poblacion_departamental) == "MUNICIPIO"] <- "municipio"
-  años_col <- 2017:2023
+  años_col <- 2017:2022
   
   # Renombrar columnas excepto 'municipio' y 'TOTAL'
   colnames(Poblacion_departamental) <- colnames(Poblacion_departamental) %>%
@@ -92,7 +92,7 @@ library(tidyr)
       left_join(rem_long, by = c("municipio", "año")) %>%
       arrange(municipio, año)
     
-    write.csv(tabla_long, paste0("C:/Users/Hp/DENGUE/JBOOK/REM/REM_", str_to_title(tipo_evento), ".csv"), row.names = FALSE)
+    write.csv(tabla_long, paste0("C:/Users/Hp/DENGUE/JBOOK/REM_", str_to_title(tipo_evento), ".csv"), row.names = FALSE)
     return(tabla_long)
   }
   
